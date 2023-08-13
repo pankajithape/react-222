@@ -1,45 +1,70 @@
+import { useEffect, useState } from 'react';
 import './Beers.css';
+import axios from 'axios';
+import BeerCard from './BeerCard';
 
-const Beers = () => {
+
+const API_URL = 'https://api.punkapi.com/v2/beers'
 
 
+const Beers = (props) => {
+  const [beers, setBeers] = useState([]);
+  const [Search, setSearch] = useState("");
+
+  console.log("Search", Search)
+  console.log("props.searchData", props.searchData)
+
+  const fetchBeers = async () => {
+    try {
+      const response = await axios.get(`${API_URL}?per_page=10`);
+      setBeers(response.data);
+    } catch (error) {
+      console.error('Error fetching beers:', error);
+    }
+  };
+
+  const SearchBeers = async () => {
+    try {
+      const response =  await axios.get(`${API_URL}?beer_name=${Search}`)
+      setBeers(response.data);
+    } catch (error) {
+      console.error('Error searching beers:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBeers();
+  }, []);
+
+  // useEffect(() => {
+  //   SearchBeers();
+  // }, [Search]);
+
+  // useEffect(() => {
+  //   setSearch(props.searchData)
+  //   props.searchData!=="" && SearchBeers();
+  //   console.log("Beers.js ", Search)
+  // }, [Search]);
 
 
   return (
     <>
       <div className="listing-section">
-  <div className="product">
-    <div className="image-box">
-      <div className="images" id="image-1"></div>
-    </div>
-    <div className="text-box">
-      <h2 className="item">Orange</h2>
-      <h3 className="price">$4.99</h3>
-      <p className="description">A bag of delicious oranges!</p>
-      <label for="item-1-quantity">Quantity:</label>
-      <input type="text" name="item-1-quantity" id="item-1-quantity" value="1"/>
-      <button type="button" name="item-1-button" id="item-1-button">Add to Cart</button>
-    </div>
-  </div>
-  <div className="product">
-    <div className="image-box">
-      <div className="images" id="image-2"></div>
-    </div>
-    <div className="text-box">
-      <h2 className="item">Apple</h2>
-      <h3 className="price">$4.99</h3>
-      <p className="description">A bag of delicious apples!</p>
-      <label for="item-2-quantity">Quantity:</label>
-      <input type="text" name="item-2-quantity" id="item-2-quantity" value="1"/>
-      <button type="button" name="item-2-button" id="item-2-button">Add to Cart</button>
-    </div>
-  </div>
-
-</div>
-    
+        {
+            // beers.length > 0 && beers.map((beer) => (
+              beers.map((beer) => (
+              <BeerCard
+                key={beer.id}
+                id={beer.id}
+                name={beer.name}
+                description={beer.description}
+                imgUrl={beer.image_url}
+              />
+            ))
+      }
+      </div>
     </>
-    
-  )
+  );
 }
 
 export default Beers;

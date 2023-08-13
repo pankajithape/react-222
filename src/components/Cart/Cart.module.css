@@ -1,0 +1,24 @@
+.cart {
+  width: 500px;
+  height:auto;
+  background-color: #313131;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart h2 {
+
+}
+
+.cart ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.noFavs {
+   height: 60px;
+   margin-top: 10px;
+   text-align: center;
+}

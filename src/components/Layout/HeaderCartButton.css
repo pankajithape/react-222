@@ -27,8 +27,10 @@
 .badge {
   background-color: #b94517;
   border-radius: 25px;
-  margin-left: 16px;
+  margin-left: 8px;
   font-weight: bold;
+  width: 24px;
+  height: 24px;
 }
 
 .button:hover .badge,

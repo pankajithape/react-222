@@ -1,0 +1,112 @@
+
+.product {
+  float: left;
+  width: 23%;
+  border-radius: 2%;
+  margin: 1%;
+  padding-top: 10px;
+  background-color: rgba(165,42,42,0.15)
+}
+
+.image-box {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 2% 2% 0 0;
+  text-align: center;
+}
+
+.images {
+  height: 120px;
+  background-size: cover; 
+  background-position: center center; 
+  background-repeat: no-repeat;
+  border-radius: 2% 2% 0 0;
+}
+
+.text-box {
+  width: 100%;
+  float: left;
+  border-radius: 0 0 2% 2%;
+  padding: 1em;
+}
+
+h2, h3 {
+  float: left;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  text-transform: uppercase;
+  margin: 0.2em auto;
+}
+
+.item, .price {
+  clear: left;
+  width: 100%;
+  text-align: center;
+}
+
+.price {
+  color: Grey;
+}
+
+.description, label, button, input {
+  float: left;
+  clear: left;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+  text-align: center;
+  margin: 0.2em auto;
+}
+
+input:focus {
+  outline-color: #fdf;
+}
+
+label {
+  width: 60%;
+}
+
+.text-box input {
+  width: 15%;
+  clear: none;
+}
+
+.text-box button {
+  margin-top: 1em;
+}
+
+button {
+  padding: 2%;
+  background-color:  rgba(165,42,42,0.6);
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+button:hover {
+  bottom: 0.1em;
+}
+
+button:focus {
+  outline: 0;
+}
+
+button:active {
+  bottom: 0;
+  background-color: #fdf;
+}
+
+.table-heading, .table-content {
+  width: 75%;
+  margin: 1% 12.25%;
+  float: left;
+  background-color: #dfd;
+}
+
+.table-heading h2 {
+  padding: 1%;
+  margin: 0;
+  text-align: center;
+}
