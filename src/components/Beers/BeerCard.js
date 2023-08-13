@@ -26,7 +26,7 @@ const BeerCard = (props) => {
           </div>
           <div className="text-box">
             <h2 className="item">{props.name.length > 15 ? props.name.substring(0, 15) + "... " : props.name}</h2>
-            <p className="description">{props.description.length > 50 ? props.description.substring(0, 50) + "... " : props.description}</p>
+            <p className="description">{props.description.length > 45 ? props.description.substring(0, 45) + "... " : props.description}</p>
             <button type="button" name="item-1-button" onClick={addToCartHandler} >Add to Favorite</button>
           </div>
       </div>

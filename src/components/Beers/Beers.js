@@ -2,21 +2,20 @@ import { useEffect, useState } from 'react';
 import './Beers.css';
 import axios from 'axios';
 import BeerCard from './BeerCard';
-
+import { useSelector } from 'react-redux';
+import Pagination from '../Layout/Pagination';
 
 const API_URL = 'https://api.punkapi.com/v2/beers'
 
-
 const Beers = (props) => {
   const [beers, setBeers] = useState([]);
-  const [Search, setSearch] = useState("");
-
-  console.log("Search", Search)
-  console.log("props.searchData", props.searchData)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(8);
+  const searchTerm = useSelector((state) => state.search.searchTerm);
 
   const fetchBeers = async () => {
     try {
-      const response = await axios.get(`${API_URL}?per_page=10`);
+      const response = await axios.get(`${API_URL}`);
       setBeers(response.data);
     } catch (error) {
       console.error('Error fetching beers:', error);
@@ -25,7 +24,7 @@ const Beers = (props) => {
 
   const SearchBeers = async () => {
     try {
-      const response =  await axios.get(`${API_URL}?beer_name=${Search}`)
+      const response =  await axios.get(`${API_URL}?beer_name=${searchTerm}`)
       setBeers(response.data);
     } catch (error) {
       console.error('Error searching beers:', error);
@@ -36,34 +35,36 @@ const Beers = (props) => {
     fetchBeers();
   }, []);
 
-  // useEffect(() => {
-  //   SearchBeers();
-  // }, [Search]);
+  useEffect(() => {
+    SearchBeers();
+  }, [searchTerm]);
 
-  // useEffect(() => {
-  //   setSearch(props.searchData)
-  //   props.searchData!=="" && SearchBeers();
-  //   console.log("Beers.js ", Search)
-  // }, [Search]);
-
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentBeerList = beers.slice(firstPostIndex, lastPostIndex);
 
   return (
-    <>
+    <div className='displayList'>
       <div className="listing-section">
-        {
-            // beers.length > 0 && beers.map((beer) => (
-              beers.map((beer) => (
-              <BeerCard
-                key={beer.id}
-                id={beer.id}
-                name={beer.name}
-                description={beer.description}
-                imgUrl={beer.image_url}
-              />
-            ))
+      {
+          currentBeerList.map((beer) => (
+          <BeerCard
+            key={beer.id}
+            id={beer.id}
+            name={beer.name}
+            description={beer.description}
+            imgUrl={beer.image_url}
+          />
+        ))
       }
       </div>
-    </>
+      <Pagination
+          totalPosts={beers.length}
+          postsPerPage={postsPerPage}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+      />
+    </div>
   );
 }
 

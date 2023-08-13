@@ -11,23 +11,32 @@
   margin-left: "500px"
 }
 
-  .search_field {
-    outline: none;
-    font-size: 17px;
-    border: none;
-    float: left;
-  
-  }
+.search_field {
+  outline: none;
+  font-size: 17px;
+  border: none;
+  float: left;
 
-  .search_btn {
-    border:none;
-    float: right;
-    margin-right: 5px;
-    border-radius: 5px;
-    width: 20%;
-    background: #2c0d00;
-    color: white;
-    font-size: 17px;
-    cursor: pointer;
+}
+
+.search_btn {
+  border:none;
+  float: right;
+  margin-right: 5px;
+  border-radius: 5px;
+  width: 20%;
+  background: #2c0d00;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+
+}
+
   
+@media (max-width: 600px) {
+  .search {
+    width: 100%;
+    border-radius: none;
+    /* flex-direction: column; */
   }
+}

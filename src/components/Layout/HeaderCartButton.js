@@ -13,7 +13,7 @@ const HeaderCartButton = () => {
   };
 
   return (
-    <button className="button" onClick={toggleCartHandler}>
+    <button className="buttonCart" onClick={toggleCartHandler}>
       <span className="icon">
         <CartIcon />
       </span>

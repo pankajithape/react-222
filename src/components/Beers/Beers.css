@@ -12,3 +12,23 @@
   /* float: center; */
   padding: 1%;
 }
+
+.displayList{
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 600px) {
+  .displayList {
+    display: block;
+  }
+
+  .listing-section {
+    margin-left: 16px;
+    margin-right: 10px;
+    width: 80%;
+    padding: 1%;
+
+  }
+}
+
