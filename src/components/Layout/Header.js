@@ -7,7 +7,7 @@ const Header = (props) => {
   return (
     <Fragment>
       <header className='header'>
-        <h1>Meme's Beer</h1>
+        <h3>Meme's Beer</h3>
         <SearchBar />
         <HeaderCartButton />
       </header>

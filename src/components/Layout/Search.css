@@ -7,8 +7,9 @@
   align-items: center;
   transition: all 0.3s;
   width: 400px;
-  justify-content: space-between;
+  justify-content: normal;
   align-items: center;
+  margin-left: "500px"
 }
 
   .search_field {
