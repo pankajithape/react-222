@@ -50,14 +50,13 @@ const Beers = (props) => {
     if(searchTerm!=="") SearchBeers();
   }, [searchTerm]);
 
-
   return (
     <div className='displayList' data-testid="beer-List-Grid">
       <div className="listing-section">
       {
           beers.map((beer) => (
-          <BeerCard
-              key={beer.id}
+            <BeerCard
+            key={beer.id}
             id={beer.id}
             beerItem={beer}
             name={beer.name}
