@@ -5,7 +5,6 @@ import { cartActions } from '../../store/cart-slice';
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
-
   const { name,description, id } = props.item;
 
   const removeItemHandler = () => {

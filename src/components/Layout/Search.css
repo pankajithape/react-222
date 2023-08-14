@@ -7,7 +7,6 @@
   transition: all 0.3s;
   width: 400px;
   justify-content: normal;
-  align-items: center;
   margin-left: "500px"
 }
 
@@ -37,6 +36,5 @@
   .search {
     width: 100%;
     border-radius: none;
-    /* flex-direction: column; */
   }
 }

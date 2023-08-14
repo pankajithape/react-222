@@ -17,7 +17,7 @@ const Beers = (props) => {
     try {
       const response = await axios.get(`${API_URL}`);
       setBeers(response.data);
-    } catch (error) {
+    } catch (error) { 
       console.error('Error fetching beers:', error);
     }
   };
@@ -44,7 +44,7 @@ const Beers = (props) => {
   const currentBeerList = beers.slice(firstPostIndex, lastPostIndex);
 
   return (
-    <div className='displayList'>
+    <div className='displayList' data-testid="beer-List-Grid">
       <div className="listing-section">
       {
           currentBeerList.map((beer) => (

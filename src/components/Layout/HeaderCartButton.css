@@ -16,7 +16,6 @@
 @media (max-width: 600px) {
   .buttonCart {
     width: 100%;
-    /* flex-direction: column; */
   }
 }
 

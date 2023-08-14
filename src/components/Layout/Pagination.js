@@ -14,7 +14,7 @@ const Pagination = ({
     }
 
     return (
-        <div className='pagination'>
+        <div className='pagination' data-testid="pagination-list">
             {pages.map((page, index) => {
                 return (
                     <button

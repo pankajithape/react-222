@@ -2,11 +2,9 @@ import './BeerCard.css';
 import { useDispatch } from 'react-redux';
 
 import { cartActions } from '../../store/cart-slice';
-import { useState } from 'react';
 
 const BeerCard = (props) => {
   const dispatch = useDispatch();
-
   const { id , name, description } = props;
 
   const addToCartHandler = () => {

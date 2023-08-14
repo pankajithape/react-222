@@ -108,15 +108,3 @@ button:active {
   background-color: #fdf;
 }
 
-.table-heading, .table-content {
-  width: 75%;
-  margin: 1% 12.25%;
-  float: left;
-  background-color: #dfd;
-}
-
-.table-heading h2 {
-  padding: 1%;
-  margin: 0;
-  text-align: center;
-}
