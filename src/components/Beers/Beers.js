@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Beers.css';
 import axios from 'axios';
 import BeerCard from './BeerCard';
@@ -12,10 +12,13 @@ const Beers = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(8);
   let searchTerm = useSelector((state) => state.search.searchTerm);
-
+  const [totalBeers, setTotalBeers] = useState(25);
+  console.log(totalBeers)
+  const initialLoadRef = useRef(true);
+  
   const fetchBeers = async () => {
     try {
-      const response = await axios.get(`${API_URL}`);
+      const response = await axios.get(`${API_URL}?page=${currentPage}&per_page=${postsPerPage}`);
       setBeers(response.data);
     } catch (error) { 
       console.error('Error fetching beers:', error);
@@ -23,13 +26,21 @@ const Beers = (props) => {
   };
 
   useEffect(() => {
-    fetchBeers();
+    if(!initialLoadRef.current) fetchBeers();
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (initialLoadRef.current === true) {
+      fetchBeers();
+      initialLoadRef.current=false;
+    }
   }, []);
 
   const SearchBeers = async () => {
     try {
-      const response =  await axios.get(`${API_URL}?beer_name=${searchTerm}`)
+      const response = await axios.get(`${API_URL}?beer_name=${searchTerm}&page=1&per_page=${postsPerPage}`)
       setBeers(response.data);
+      setTotalBeers(response.data.length)
     } catch (error) {
       console.error('Error searching beers:', error);
     }
@@ -39,18 +50,16 @@ const Beers = (props) => {
     if(searchTerm!=="") SearchBeers();
   }, [searchTerm]);
 
-  const lastPostIndex = currentPage * postsPerPage;
-  const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentBeerList = beers.slice(firstPostIndex, lastPostIndex);
 
   return (
     <div className='displayList' data-testid="beer-List-Grid">
       <div className="listing-section">
       {
-          currentBeerList.map((beer) => (
+          beers.map((beer) => (
           <BeerCard
-            key={beer.id}
+              key={beer.id}
             id={beer.id}
+            beerItem={beer}
             name={beer.name}
             description={beer.description}
             imgUrl={beer.image_url}
@@ -59,10 +68,10 @@ const Beers = (props) => {
       }
       </div>
       <Pagination
-          totalPosts={beers.length}
+          totalPosts={totalBeers}
           postsPerPage={postsPerPage}
           setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
+        currentPage={currentPage}
       />
     </div>
   );
