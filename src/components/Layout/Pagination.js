@@ -15,7 +15,6 @@ const Pagination = ({
 
     return (
         <div className='pagination'>
-            {/* <div className="paginationMobile"> */}
             {pages.map((page, index) => {
                 return (
                     <button
@@ -26,7 +25,6 @@ const Pagination = ({
                     </button>
                 );
             })}
-                {/* </div> */}
         </div>
     );
 };
