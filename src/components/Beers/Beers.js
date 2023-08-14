@@ -11,7 +11,7 @@ const Beers = (props) => {
   const [beers, setBeers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(8);
-  const searchTerm = useSelector((state) => state.search.searchTerm);
+  let searchTerm = useSelector((state) => state.search.searchTerm);
 
   const fetchBeers = async () => {
     try {
@@ -21,6 +21,10 @@ const Beers = (props) => {
       console.error('Error fetching beers:', error);
     }
   };
+
+  useEffect(() => {
+    fetchBeers();
+  }, []);
 
   const SearchBeers = async () => {
     try {
@@ -32,11 +36,7 @@ const Beers = (props) => {
   };
 
   useEffect(() => {
-    fetchBeers();
-  }, []);
-
-  useEffect(() => {
-    SearchBeers();
+    if(searchTerm!=="") SearchBeers();
   }, [searchTerm]);
 
   const lastPostIndex = currentPage * postsPerPage;
