@@ -2,13 +2,14 @@ import React, { Fragment } from 'react';
 import HeaderCartButton from './HeaderCartButton';
 import './Header.css';
 import SearchBar from './Search';
+import { Link } from 'react-router-dom';
 
 const Header = (props) => {
 
   return (
     <Fragment>
       <header className='header'>
-        <h3 className='logo'>Meme's Beer</h3>
+        <Link to="/"><h3 className='logo'>Meme's Beer</h3></Link>
         <SearchBar  />
         <HeaderCartButton />
       </header>

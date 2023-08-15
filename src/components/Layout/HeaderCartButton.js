@@ -1,25 +1,22 @@
 import CartIcon from '../Cart/CartIcon';
 import './HeaderCartButton.css';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 
-import { uiActions } from '../../store/ui-slice';
+import { Link } from 'react-router-dom';
 
 const HeaderCartButton = () => {
-  const dispatch = useDispatch();
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
 
-  const toggleCartHandler = () => {
-    dispatch(uiActions.toggle());
-  };
-
   return (
-    <button className="buttonCart" onClick={toggleCartHandler}>
+    <Link to="/favorites">
+      <button className="buttonCart" >
       <span className="icon">
         <CartIcon />
       </span>
       <span>Your Favorites</span>
       <span className='badge'>{cartQuantity}</span>
-    </button>
+      </button>
+    </Link>
   );
 };
 
