@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import './Search.css'
 import { searchActions } from '../../store/search-slice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const SearchBar = (props) => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(useSelector((state) => state.search.searchTerm));
   const dispatch = useDispatch();
 
   const searchHandler = (e) => {

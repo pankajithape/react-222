@@ -13,8 +13,8 @@ const Beers = (props) => {
   const [postsPerPage, setPostsPerPage] = useState(8);
   let searchTerm = useSelector((state) => state.search.searchTerm);
   const [totalBeers, setTotalBeers] = useState(25);
-  console.log(totalBeers)
   const initialLoadRef = useRef(true);
+  const initialSearchRef = useRef(true);
   
   const fetchBeers = async () => {
     try {
@@ -47,8 +47,19 @@ const Beers = (props) => {
   };
 
   useEffect(() => {
-    if(searchTerm!=="") SearchBeers();
+    if (searchTerm !== "") {
+      SearchBeers();
+      initialLoadRef.current = false;
+    }
   }, [searchTerm]);
+
+    useEffect(() => {
+      if (!initialLoadRef.current) {
+        SearchBeers();
+        // initialLoadRef.current = false;
+      }
+
+  }, []);
 
   return (
     <div className='displayList' data-testid="beer-List-Grid">
@@ -70,7 +81,7 @@ const Beers = (props) => {
           totalPosts={totalBeers}
           postsPerPage={postsPerPage}
           setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
+          currentPage={currentPage}
       />
     </div>
   );
