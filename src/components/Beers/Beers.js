@@ -7,7 +7,7 @@ import Pagination from '../Layout/Pagination';
 
 const API_URL = 'https://api.punkapi.com/v2/beers'
 
-const Beers = (props) => {
+const Beers = () => {
   const [beers, setBeers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(8);
@@ -40,6 +40,7 @@ const Beers = (props) => {
     try {
       const response = await axios.get(`${API_URL}?beer_name=${searchTerm}&page=1&per_page=${postsPerPage}`)
       setBeers(response.data);
+      setCurrentPage(1)
       setTotalBeers(response.data.length)
     } catch (error) {
       console.error('Error searching beers:', error);
@@ -49,28 +50,25 @@ const Beers = (props) => {
   useEffect(() => {
     if (searchTerm !== "") {
       SearchBeers();
-      initialLoadRef.current = false;
+      initialSearchRef.current = false;
+    }
+    if (searchTerm === "" && !initialSearchRef.current) {
+      setTotalBeers(25)
+      fetchBeers();
     }
   }, [searchTerm]);
 
-    useEffect(() => {
-      if (!initialLoadRef.current) {
-        SearchBeers();
-        // initialLoadRef.current = false;
-      }
-
-  }, []);
-
-  return (
+   return (
     <div className='displayList' data-testid="beer-List-Grid">
       <div className="listing-section">
       {
-          beers.map((beer) => (
-            <BeerCard
+        beers.map((beer) => (
+          <BeerCard
             key={beer.id}
             id={beer.id}
             beerItem={beer}
             name={beer.name}
+            isFavorite={beer.hasOwnProperty('isFav')}
             description={beer.description}
             imgUrl={beer.image_url}
           />

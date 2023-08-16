@@ -6,7 +6,6 @@ const searchSlice = createSlice({
   reducers: {
     searchBeer(state, action) {
       const searchItem = action.payload;
-      console.log("searchItem",searchItem)
       state.searchTerm = searchItem;
     }
   }

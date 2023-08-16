@@ -1,4 +1,4 @@
-import { combineReducers, configureStore,  getDefaultMiddleware,} from '@reduxjs/toolkit';
+import { combineReducers, configureStore} from '@reduxjs/toolkit';
 import cartSlice from './cart-slice';
 import searchSlice from './search-slice';
 import storage from 'redux-persist/lib/storage' 
@@ -25,12 +25,12 @@ const persistedReducer = persistReducer(persistConfig, rootReducers)
 
 const store = configureStore({
   reducer: persistedReducer, 
-  middleware: getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
-
+  middleware: (getDefaultMiddleware) =>
+                  getDefaultMiddleware({
+                      serializableCheck: {
+                          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+                      },
+                  }),
 });
 
 export default store;
