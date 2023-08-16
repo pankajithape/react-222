@@ -108,3 +108,8 @@ button:active {
   background-color: #fdf;
 }
 
+.removeFav{
+  background-color: white;
+  color:rgba(165,42,42)
+}
+

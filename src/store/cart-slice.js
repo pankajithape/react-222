@@ -12,11 +12,7 @@ const cartSlice = createSlice({
       const existingItem = state.items.find((item) => item.id === newItem.id);
       if (!existingItem) {
         state.totalQuantity++;
-        state.items.push({
-          id: newItem.id,
-          name: newItem.name,
-          description: newItem.description,
-        });
+        state.items.push(newItem);
       }
     },
     removeItemFromCart(state, action) {
