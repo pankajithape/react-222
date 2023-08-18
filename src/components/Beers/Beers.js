@@ -4,6 +4,7 @@ import axios from 'axios';
 import BeerCard from './BeerCard';
 import { useSelector } from 'react-redux';
 import Pagination from '../Layout/Pagination';
+import Header from '../Layout/Header';
 
 const API_URL = 'https://api.punkapi.com/v2/beers'
 
@@ -58,7 +59,8 @@ const Beers = () => {
     }
   }, [searchTerm]);
 
-   return (
+  return (<>
+    <Header/>
     <div className='displayList' data-testid="beer-List-Grid">
       <div className="listing-section">
       {
@@ -82,6 +84,7 @@ const Beers = () => {
           currentPage={currentPage}
       />
     </div>
+    </>
   );
 }
 

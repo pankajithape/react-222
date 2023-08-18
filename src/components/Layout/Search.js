@@ -1,16 +1,20 @@
-import {  useState } from 'react';
+import {  useEffect, useState } from 'react';
 import './Search.css'
 import { searchActions } from '../../store/search-slice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const SearchBar = (props) => {
-  const [search, setSearch] = useState(useSelector((state) => state.search.searchTerm));
+  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
-
+  const searchVal = useSelector((state) => state.search.searchTerm);
   const searchHandler = (e) => {
     e.preventDefault();
     dispatch(searchActions.searchBeer(search))
   }
+
+    useEffect(() => {
+       setSearch(searchVal)
+  },[searchVal])
 
   return (
   <>

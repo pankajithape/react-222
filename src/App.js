@@ -1,4 +1,3 @@
-import Header from "./components/Layout/Header";
 import Beers from "./components/Beers/Beers";
 import Cart from "./components/Cart/Cart";
 import {
@@ -10,8 +9,8 @@ function App() {
   return (
     <div>    
       <Routes>
-        <Route path="favorites" element={<><Header/><Cart/></>}></Route>
-        <Route path="/" element={<><Header/><Beers/></>}></Route>
+        <Route path="favorites" element={<Cart/>}></Route>
+        <Route path="/" element={<Beers/>}></Route>
       </Routes>
     </div>
   );
